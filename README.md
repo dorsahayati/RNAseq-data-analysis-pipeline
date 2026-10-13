@@ -4,9 +4,10 @@ A complete, reproducible transcriptomics pipeline that starts from **one count f
 and ends with a **ranked biomarker panel compared across sample types**. It produces ~70 figures,
 ~20 result tables and a single self-contained HTML report.
 
-Everything runs in Python. `PyDESeq2` provides the DESeq2 negative-binomial statistics; if it is
+ `PyDESeq2` provides the DESeq2 negative-binomial statistics; if it is
 not installed the pipeline falls back to a Welch t-test on log2 CPM so it never hard-fails.
 
+Developed for integrating tumour-tissue and plasma (EV-RNA and cell-free RNA) transcriptomes in colorectal cancer.
 ---
 
 ## What it does

@@ -1,0 +1,5 @@
+,contrast,method,n_case,n_control,genes_tested,significant,up,down,covariates
+0,All samples,"PyDESeq2 (Wald test, negative binomial)",40,40,3708,68,51,17,batch
+1,plasma_cfRNA,"PyDESeq2 (Wald test, negative binomial)",14,14,3708,33,15,18,batch
+2,tumor_tissue,"PyDESeq2 (Wald test, negative binomial)",12,12,3708,154,115,39,batch
+3,whole_blood,"PyDESeq2 (Wald test, negative binomial)",14,14,3708,38,25,13,batch
