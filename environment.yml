@@ -1,0 +1,44 @@
+# Conda environment for the RNA-seq cancer vs control biomarker pipeline
+#
+#   conda env create -f environment.yml
+#   conda activate rnaseq-biomarker
+#
+# Place this file in the pipeline root, next to requirements.txt.
+# The pip step at the bottom installs anything in requirements.txt that the conda block missed.
+
+name: rnaseq-biomarker
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.11
+  - pip
+
+  # core numerics / data handling
+  - numpy
+  - pandas
+  - scipy
+  - statsmodels
+  - scikit-learn
+  - anndata               # PyDESeq2 dependency, faster from conda
+
+  # input formats + config
+  - pyyaml
+  - openpyxl              # .xlsx count matrices
+
+  # plotting
+  - matplotlib
+  - seaborn
+  - matplotlib-venn
+  - upsetplot
+
+  # report
+  - jinja2
+
+  # optional extras named in the README
+  - umap-learn            # UMAP in QC
+
+  - pip:
+      - pydeseq2          # DESeq2 statistics (pipeline falls back to Welch t-test without it)
+      - gseapy            # optional: Enrichr
+      - -r requirements.txt

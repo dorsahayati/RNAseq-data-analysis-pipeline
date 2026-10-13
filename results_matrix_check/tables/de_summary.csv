@@ -1,0 +1,5 @@
+,contrast,method,n_case,n_control,genes_tested,significant,up,down,covariates
+0,All samples,Welch t-test on log2 CPM,40,40,3708,52,31,21,none
+1,plasma_cfRNA,Welch t-test on log2 CPM,14,14,3708,0,0,0,none
+2,tumor_tissue,Welch t-test on log2 CPM,12,12,3708,143,104,39,none
+3,whole_blood,Welch t-test on log2 CPM,14,14,3708,7,6,1,none

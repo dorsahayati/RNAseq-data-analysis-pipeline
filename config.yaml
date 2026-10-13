@@ -1,0 +1,98 @@
+# =====================================================================================
+# RNA-seq cancer vs control biomarker pipeline - configuration
+# Every option below has a sensible default; delete anything you do not need.
+# Paths are resolved relative to the folder containing this file.
+# =====================================================================================
+
+project:
+  name: "Cancer vs control RNA-seq biomarker study"
+  outdir: "results"
+  seed: 42
+
+input:
+  # ---- counts ---------------------------------------------------------------------
+  # Two input modes are supported. A file is always read as a genes x samples matrix;
+  # a folder is always read as one count file per sample. You can use the unified
+  # `counts` key, or the explicit keys below.
+  #
+  # Unified (auto-detect from the path):
+  counts: null                     # e.g. "data/counts"  OR  "data/counts_matrix.tsv"
+  #
+  # MODE A - one count file per sample. featureCounts, htseq-count, STAR ReadsPerGene,
+  #          RSEM/salmon and plain two-column gene/count tables are auto-detected, and the
+  #          sample id is taken from the file name.
+  counts_dir: "data/counts"
+  counts_pattern: "*.txt"          # glob inside counts_dir (.gz counterparts are included)
+  #
+  # MODE B - one pre-merged matrix with genes in rows and samples in columns. csv/tsv/txt
+  #          (optionally .gz) and xlsx are accepted, the delimiter is sniffed, and extra
+  #          annotation columns (gene_name, Length, Chr, biotype, ...) are separated from
+  #          the sample columns automatically:
+  counts_matrix: null              # e.g. "data/counts_matrix.tsv"
+  #
+  # Override only if column detection picks the wrong one:
+  gene_id_col: null
+  count_col: null
+
+  # ---- sample sheet ---------------------------------------------------------------
+  metadata: "data/metadata.csv"
+  sample_col: "sample_id"          # must match the count file names (or matrix columns)
+  condition_col: "condition"
+  case_label: "cancer"
+  control_label: "control"
+  sample_type_col: "sample_type"   # the column compared at the end; null disables it
+  batch_col: "batch"               # added to the DE design when not confounded; null to skip
+
+  # ---- annotation -----------------------------------------------------------------
+  gene_annotation: "data/gene_annotation.csv"   # gene_id -> gene_name, optional
+  gene_lengths: null                            # only needed for TPM
+  strip_ensembl_version: true                   # ENSG00000141510.16 -> ENSG00000141510
+
+filtering:
+  min_count: 10                # a gene needs this many counts ...
+  min_samples: null            # ... in this many samples (default: size of the smallest group)
+  min_total_count: 15
+  drop_zero_variance: true
+  top_variable_genes: 2000     # used for PCA / clustering only, never for testing
+
+analysis:
+  de_method: "auto"            # auto (PyDESeq2, falling back to t-test) | pydeseq2 | ttest
+  normalization: "deseq"       # deseq (median of ratios) | tmm | cpm
+  alpha: 0.05                  # FDR threshold
+  lfc_threshold: 1.0           # minimum |log2 fold change| to call a gene DE
+  shrink_lfc: true             # apeglm-style shrinkage of noisy fold changes
+  per_sample_type: true        # run the contrast separately inside each sample type
+  include_batch: true          # add batch_col to the design when it is not confounded
+  min_group_size: 3            # skip a contrast with fewer replicates than this
+
+biomarkers:
+  top_n: 30                    # candidates shown in the ranking figures
+  min_auc: 0.70                # target line drawn on the AUC plots
+  panel_size: 15               # genes in the multivariate panel
+  cv_folds: 5
+  cv_repeats: 10
+  models: ["logistic_l1", "random_forest", "svm_rbf"]
+  cross_sample_type_validation: true   # train on one material, test on the others
+  permutations: 200            # label permutations for the null AUC distribution
+  n_boxplot_genes: 12
+
+enrichment:
+  enable: true
+  online: false                # true also queries Enrichr (needs internet + gseapy)
+  offline_gmt: "resources/hallmark_lite.gmt"   # swap in a full MSigDB .gmt for real work
+  gene_sets: ["MSigDB_Hallmark_2020", "KEGG_2021_Human", "GO_Biological_Process_2023"]
+  organism: "Human"
+  top_terms: 20
+
+plots:
+  formats: ["png", "pdf"]      # every figure is written in each format
+  dpi: 200
+  label_top_n: 20              # genes labelled on volcano plots
+  heatmap_top_n: 50
+  case_color: "#c0392b"
+  control_color: "#2874a6"
+
+report:
+  enable: true
+  embed_images: true           # single self-contained HTML file
+  filename: "report.html"

@@ -1,0 +1,136 @@
+11:04:57 | INFO    | ==============================================================================
+11:04:57 | INFO    | Cancer vs control RNA-seq biomarker study | cancer vs control
+11:04:57 | INFO    | results -> C:\Users\d.hayati\rnaseq-biomarker-pipeline\results_matrix_check
+11:04:57 | INFO    | ==============================================================================
+11:04:57 | INFO    | >>> loading counts and metadata
+11:04:57 | INFO    | loaded count matrix counts_matrix.tsv: 4000 genes x 80 samples
+11:04:57 | INFO    | analysis set: 80 samples (control=40, cancer=40)
+11:04:57 | INFO    | using 4000 gene symbols supplied with the count matrix
+11:04:57 | INFO    | annotated 4000/4000 genes with symbols
+11:04:57 | INFO    | <<< loading counts and metadata (0.5s)
+11:04:57 | INFO    | >>> filtering and normalising
+11:04:57 | INFO    | gene filtering: 4000 -> 3708 genes retained (92.7%)
+11:04:57 | INFO    | gene lengths available - TPM exported alongside the normalised counts
+11:04:57 | INFO    | <<< filtering and normalising (0.1s)
+11:04:57 | INFO    | >>> quality control figures
+11:04:59 | INFO    | figure [qc]         01_design_overview
+11:05:01 | INFO    | figure [qc]         02_library_size
+11:05:03 | INFO    | figure [qc]         03_detected_genes
+11:05:04 | INFO    | figure [qc]         04_gene_filtering
+11:05:09 | INFO    | figure [qc]         05_count_distributions
+11:05:15 | INFO    | figure [qc]         06_density_sparsity
+11:05:19 | INFO    | figure [qc]         07_rle
+11:05:21 | INFO    | figure [qc]         08_size_factors
+11:05:23 | INFO    | figure [qc]         09_top_expressed_genes
+11:05:25 | INFO    | figure [qc]         10_mean_variance
+11:05:29 | INFO    | figure [qc]         11_sample_correlation
+11:05:33 | INFO    | figure [qc]         12_sample_distance
+11:05:35 | INFO    | figure [qc]         13_dendrogram
+11:05:37 | INFO    | figure [qc]         14_pca_variance
+11:05:39 | INFO    | figure [qc]         15_pca_scatter
+11:05:42 | INFO    | figure [qc]         16_pca_pairs
+11:05:44 | INFO    | UMAP not installed - skipping UMAP embedding (pip install umap-learn to enable)
+11:05:46 | INFO    | figure [qc]         17_embeddings
+11:05:48 | INFO    | figure [qc]         18_outlier_detection
+11:05:51 | INFO    | figure [qc]         19_most_variable_genes
+11:05:51 | INFO    | <<< quality control figures (53.4s)
+11:05:51 | INFO    | >>> differential expression
+11:05:51 | INFO    | contrast All samples            Welch | 31 up, 21 down (padj<0.05, |log2FC|>=1)
+11:05:51 | INFO    | contrast plasma_cfRNA           Welch | 0 up, 0 down (padj<0.05, |log2FC|>=1)
+11:05:51 | INFO    | contrast tumor_tissue           Welch | 104 up, 39 down (padj<0.05, |log2FC|>=1)
+11:05:51 | INFO    | contrast whole_blood            Welch | 6 up, 1 down (padj<0.05, |log2FC|>=1)
+11:05:51 | INFO    | condition x sample-type interaction: 0 genes with FDR < 0.05
+11:05:51 | INFO    | <<< differential expression (0.3s)
+11:05:51 | INFO    | >>> differential expression figures
+11:05:52 | INFO    | figure [de]         01_de_gene_counts
+11:05:54 | INFO    | figure [de]         02_volcano_all_samples
+11:05:55 | INFO    | figure [de]         03_volcano_plasma_cfRNA
+11:05:56 | INFO    | figure [de]         04_volcano_tumor_tissue
+11:05:58 | INFO    | figure [de]         05_volcano_whole_blood
+11:06:00 | INFO    | figure [de]         06_ma_plot_all_samples
+11:06:02 | INFO    | figure [de]         07_ma_plot_plasma_cfRNA
+11:06:04 | INFO    | figure [de]         08_ma_plot_tumor_tissue
+11:06:06 | INFO    | figure [de]         09_ma_plot_whole_blood
+11:06:08 | INFO    | figure [de]         10_pvalue_histograms
+11:06:11 | INFO    | figure [de]         11_heatmap_all_samples
+11:06:11 | INFO    | figure [de]         12_heatmap_plasma_cfRNA
+11:06:13 | INFO    | figure [de]         13_heatmap_tumor_tissue
+11:06:14 | INFO    | figure [de]         14_heatmap_whole_blood
+11:06:16 | INFO    | figure [de]         15_top_lfc_all_samples
+11:06:20 | INFO    | figure [de]         16_top_gene_boxplots_all_samples
+11:06:21 | INFO    | figure [de]         17_rank_curve_all_samples
+11:06:24 | INFO    | figure [de]         18_interaction_genes
+11:06:24 | INFO    | <<< differential expression figures (33.1s)
+11:06:24 | INFO    | >>> cross sample-type comparison
+11:06:25 | INFO    | figure [compare]    01_venn_overlap
+11:06:26 | INFO    | figure [compare]    02_upset_all
+11:06:27 | INFO    | figure [compare]    03_upset_up
+11:06:28 | INFO    | figure [compare]    04_upset_down
+11:06:31 | INFO    | figure [compare]    05_lfc_scatter_matrix
+11:06:33 | INFO    | figure [compare]    06_concordance_summary
+11:06:34 | INFO    | figure [compare]    07_rank_concordance
+11:06:36 | INFO    | figure [compare]    08_lfc_heatmap
+11:06:37 | INFO    | figure [compare]    09_meta_volcano
+11:06:39 | INFO    | figure [compare]    10_forest_plot
+11:06:40 | INFO    | figure [compare]    11_shared_vs_specific
+11:06:40 | INFO    | cross-sample-type: 0 core markers significant and concordant in all 3 sample types
+11:06:40 | INFO    | <<< cross sample-type comparison (15.5s)
+11:06:40 | INFO    | >>> biomarker discovery and evaluation
+11:06:40 | INFO    | biomarker candidates: 113 genes from the cross-sample-type meta-analysis
+11:07:57 | INFO    | biomarker panel: 15 genes selected from 113 candidates
+11:07:59 | INFO    | figure [biomarker]  01_auc_ranking
+11:08:00 | INFO    | figure [biomarker]  02_roc_single_genes
+11:08:02 | INFO    | figure [biomarker]  03_auc_by_sample_type
+11:08:04 | INFO    | figure [biomarker]  04_lfc_vs_auc
+11:08:07 | INFO    | figure [biomarker]  05_biomarker_boxplots
+11:08:11 | INFO    | panel logistic_l1      CV AUC 0.970 ± 0.043 | nested AUC 0.972
+11:09:10 | INFO    | panel random_forest    CV AUC 0.988 ± 0.022 | nested AUC 0.977
+11:09:15 | INFO    | panel svm_rbf          CV AUC 0.986 ± 0.026 | nested AUC 0.973
+11:09:16 | INFO    | figure [biomarker]  06_panel_roc
+11:09:17 | INFO    | figure [biomarker]  07_panel_pr_confusion
+11:09:18 | INFO    | figure [biomarker]  08_feature_importance
+11:09:20 | INFO    | figure [biomarker]  09_validation_checks
+11:15:09 | INFO    | figure [biomarker]  10_panel_size_curve
+11:16:20 | INFO    | figure [biomarker]  11_cross_sample_type_transfer
+11:16:23 | INFO    | figure [biomarker]  12_signature_score
+11:16:34 | INFO    | figure [biomarker]  13_panel_sample_heatmap
+11:16:37 | INFO    | figure [biomarker]  14_panel_correlation
+11:16:37 | INFO    | <<< biomarker discovery and evaluation (597.6s)
+11:16:37 | INFO    | >>> functional enrichment
+11:16:37 | INFO    | loaded 17 gene sets from hallmark_lite.gmt
+11:16:39 | INFO    | figure [enrichment] 01_ora_dotplot
+11:16:42 | INFO    | figure [enrichment] 02_gsea_nes
+11:16:45 | INFO    | figure [enrichment] 03_gsea_running_score
+11:16:48 | INFO    | figure [enrichment] 04_pathway_by_sample_type
+11:16:48 | INFO    | <<< functional enrichment (10.3s)
+11:16:48 | INFO    | >>> writing tables and report
+11:16:48 | INFO    | wrote table normalised_counts.csv (3708 rows)
+11:16:48 | INFO    | wrote table vst_expression.csv (3708 rows)
+11:16:49 | INFO    | wrote table tpm_expression.csv (3708 rows)
+11:16:49 | INFO    | wrote table sample_qc_metrics.csv (80 rows)
+11:16:49 | INFO    | wrote table pca_coordinates.csv (80 rows)
+11:16:49 | INFO    | wrote table de_all_samples.csv (3708 rows)
+11:16:49 | INFO    | wrote table de_plasma_cfRNA.csv (3708 rows)
+11:16:49 | INFO    | wrote table de_tumor_tissue.csv (3708 rows)
+11:16:49 | INFO    | wrote table de_whole_blood.csv (3708 rows)
+11:16:49 | INFO    | wrote table de_summary.csv (4 rows)
+11:16:49 | INFO    | wrote table de_condition_by_sample_type_interaction.csv (3708 rows)
+11:16:49 | INFO    | wrote table cross_sample_type_meta_analysis.csv (3708 rows)
+11:16:49 | INFO    | wrote table sample_type_concordance.csv (3 rows)
+11:16:49 | INFO    | wrote table biomarker_univariate_performance.csv (113 rows)
+11:16:49 | INFO    | wrote table biomarker_panel_summary.csv (3 rows)
+11:16:49 | INFO    | wrote table biomarker_signature_auc_by_sample_type.csv (4 rows)
+11:16:49 | INFO    | wrote table biomarker_sample_scores.csv (80 rows)
+11:16:49 | INFO    | wrote table biomarker_cross_sample_type_transfer_auc.csv (3 rows)
+11:16:49 | INFO    | wrote table biomarker_cross_sample_type_transfer_auc_uncalibrated.csv (3 rows)
+11:16:49 | INFO    | wrote table enrichment_ora_up_in_cancer.csv (5 rows)
+11:16:49 | INFO    | wrote table enrichment_ora_down_in_cancer.csv (4 rows)
+11:16:49 | INFO    | wrote table enrichment_gsea_all_samples.csv (17 rows)
+11:16:49 | INFO    | wrote table enrichment_pathway_nes_by_sample_type.csv (17 rows)
+11:16:49 | INFO    | wrote table figure_index.csv (66 rows)
+11:16:50 | INFO    | report written to C:\Users\d.hayati\rnaseq-biomarker-pipeline\results_matrix_check\report.html (17.9 MB)
+11:16:50 | INFO    | <<< writing tables and report (2.2s)
+11:16:50 | INFO    | ==============================================================================
+11:16:50 | INFO    | done: 66 figures, 23 tables
+11:16:50 | INFO    | open the report: C:\Users\d.hayati\rnaseq-biomarker-pipeline\results_matrix_check\report.html
+11:16:50 | INFO    | ==============================================================================

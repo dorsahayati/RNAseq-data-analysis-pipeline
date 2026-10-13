@@ -1,0 +1,5 @@
+,sample_type,n,auc
+0,all samples,80,0.996875
+1,plasma_cfRNA,28,0.9948979591836735
+2,tumor_tissue,24,1.0
+3,whole_blood,28,0.9897959183673469
